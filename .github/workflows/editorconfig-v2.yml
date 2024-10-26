@@ -14,7 +14,6 @@ jobs:
   tests:
     name: editorconfig-check
     runs-on: ubuntu-latest
-    if: "github.repository_owner == 'NixOS' && !contains(github.event.pull_request.title, '[skip treewide]')"
     steps:
     - name: Get list of changed files from PR
       env:
