@@ -14,14 +14,13 @@ jobs:
   tests:
     name: editorconfig-check
     runs-on: ubuntu-latest
-    if: "github.repository_owner == 'NixOS' && !contains(github.event.pull_request.title, '[skip treewide]')"
     steps:
     - name: Get list of changed files from PR
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         gh api \
-          repos/NixOS/nixpkgs/pulls/${{github.event.number}}/files --paginate \
+          repos/lxhom/nixpkgs/pulls/${{github.event.number}}/files --paginate \
           | jq '.[] | select(.status != "removed") | .filename' \
           > "$HOME/changed_files"
     - name: print list of changed files
